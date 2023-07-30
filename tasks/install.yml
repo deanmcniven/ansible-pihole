@@ -13,12 +13,19 @@
     group: pihole
     system: true
 
+- name: Create PiHole base directory in /opt
+  become: true
+  file:
+    path: /opt/pihole
+    state: directory
+    owner: pihole
+    group: pihole
+
 - name: Create PiHole configuration directory for /etc/pihole
   become: true
   file:
     path: /opt/pihole/etc-pihole
     state: directory
-    recurse: yes
     owner: pihole
     group: pihole
     mode: '0755'
@@ -28,7 +35,6 @@
   file:
     path: /opt/pihole/etc-dnsmasq_d
     state: directory
-    recurse: yes
     owner: pihole
     group: pihole
     mode: '0755'
@@ -38,7 +44,6 @@
   file:
     path: /opt/pihole/img_build
     state: directory
-    recurse: yes
     owner: pihole
     group: pihole
     mode: '0755'
