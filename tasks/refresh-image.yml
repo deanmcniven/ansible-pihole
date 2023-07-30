@@ -11,3 +11,6 @@
       path: /opt/pihole/img_build
     name: localhost:5000/panamax-pihole
     tag: latest
+  notify:
+    - Restart PiHole
+

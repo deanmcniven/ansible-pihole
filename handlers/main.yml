@@ -1,0 +1,8 @@
+---
+
+- name: Restart PiHole
+  become: true
+  systemd:
+    state: restarted
+    name: pihole.service
+

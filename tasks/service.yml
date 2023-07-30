@@ -1,0 +1,28 @@
+---
+
+- name: Get pihole user id
+  shell: /usr/bin/id -u pihole
+  register: pihole_user_id
+
+- name: Get pihole group id
+  shell: /usr/bin/id -g pihole
+  register: pihole_group_id
+
+- name: Install Service Unit file
+  become: true
+  template:
+    src: pihole-service.j2
+    dest: "/etc/systemd/system/pihole.service"
+    mode: 0644
+    owner: root
+    group: root
+  notify:
+    - Restart PiHole
+
+- name: Enable the Service Unit file
+  become: true
+  systemd:
+    state: started
+    enabled: true
+    name: pihole.service
+
