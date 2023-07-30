@@ -3,10 +3,12 @@
 - name: Get pihole user id
   shell: /usr/bin/id -u pihole
   register: pihole_user_id
+  changed_when: false
 
 - name: Get pihole group id
   shell: /usr/bin/id -g pihole
   register: pihole_group_id
+  changed_when: false
 
 - name: Install Service Unit file
   become: true
