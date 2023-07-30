@@ -1,0 +1,13 @@
+---
+- name: Pull pihole/pihole:latest
+  community.docker.docker_image:
+    name: pihole/pihole:latest
+    source: pull
+
+- name: Create Modified Runtime Image
+  community.docker.docker_image:
+    source: build
+    build:
+      path: /opt/pihole/img_build
+    name: localhost:5000/panamax-pihole
+    tag: latest
