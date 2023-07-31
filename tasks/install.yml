@@ -13,6 +13,20 @@
     group: pihole
     system: true
 
+- name: Create subuid for pihole
+  become: true:
+  lineinfile:
+    path: /etc/subuid
+    regexp: '^pihole:'
+    line: "pihole:{{pihole_nsremapping_base}}:65536"
+
+- name: Create subgid for pihole
+  become: true:
+  lineinfile:
+    path: /etc/subgid
+    regexp: '^pihole:'
+    line: "pihole:{{pihole_nsremapping_base}}:65536"
+
 - name: Create PiHole base directory in /opt
   become: true
   file:
