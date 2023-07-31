@@ -53,3 +53,8 @@
     owner: root
     group: root
     mode: '0644'
+
+- name: print moby scope variable
+  debug:
+    msg: "Scopped Variable `moby_userns_name`: {{moby_userns_name}}"
+
