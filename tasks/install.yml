@@ -1,47 +1,21 @@
 ---
-- name: Create group for pihole container
-  become: true
-  group:
-    name: pihole
-    system: true
-
-- name: Create user for pihole container
-  become: true
-  user:
-    create_home: false
-    name: pihole
-    group: pihole
-    system: true
-
-- name: Create subuid for pihole
-  become: true
-  lineinfile:
-    path: /etc/subuid
-    regexp: '^pihole:'
-    line: "pihole:{{pihole_nsremapping_base}}:65536"
-
-- name: Create subgid for pihole
-  become: true
-  lineinfile:
-    path: /etc/subgid
-    regexp: '^pihole:'
-    line: "pihole:{{pihole_nsremapping_base}}:65536"
 
 - name: Create PiHole base directory in /opt
   become: true
   file:
     path: /opt/pihole
     state: directory
-    owner: pihole
-    group: pihole
+    owner: root
+    group: root
+    mode: '0755'
 
 - name: Create PiHole configuration directory for /etc/pihole
   become: true
   file:
     path: /opt/pihole/etc-pihole
     state: directory
-    owner: pihole
-    group: pihole
+    owner: root
+    group: root
     mode: '0755'
 
 - name: Create PiHole configuration directory for /etc/dnsmasq.d
@@ -49,8 +23,8 @@
   file:
     path: /opt/pihole/etc-dnsmasq_d
     state: directory
-    owner: pihole
-    group: pihole
+    owner: root
+    group: root
     mode: '0755'
 
 - name: Create PiHole image creation directory
@@ -58,8 +32,8 @@
   file:
     path: /opt/pihole/img_build
     state: directory
-    owner: pihole
-    group: pihole
+    owner: root
+    group: root
     mode: '0755'
 
 - name: Copy Dockerfile
@@ -67,8 +41,8 @@
   copy:
     src: 'files/Dockerfile'
     dest: '/opt/pihole/img_build/Dockerfile'
-    owner: pihole
-    group: pihole
+    owner: root
+    group: root
     mode: '0644'
 
 - name: Copy Patchfile
@@ -76,6 +50,6 @@
   copy:
     src: 'files/dont-reset-password-on-boot.patch'
     dest: '/opt/pihole/img_build/dont-reset-password-on-boot.patch'
-    owner: pihole
-    group: pihole
+    owner: root
+    group: root
     mode: '0644'

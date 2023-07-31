@@ -1,29 +1,9 @@
 ---
 
-- name: Get pihole user id
-  shell: /usr/bin/id -u pihole
-  register: shell_user_id
-  changed_when: false
-
-- name: Set pihole_user_id fact
-  set_fact:
-    pihole_user_id: "{{shell_user_id.stdout}}"
-  changed_when: false
-
-- name: Get pihole group id
-  shell: /usr/bin/id -g pihole
-  register: shell_group_id
-  changed_when: false
-
-- name: Set pihole_group_id fact
-  set_fact:
-    pihole_group_id: "{{shell_group_id.stdout}}"
-  changed_when: false
-
 - name: Install Service Unit file
   become: true
-  template:
-    src: pihole-service.j2
+  copy:
+    src: 'files/pihole.service'
     dest: "/etc/systemd/system/pihole.service"
     mode: 0644
     owner: root

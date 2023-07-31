@@ -1,8 +1,8 @@
 ---
 
-#- name: Restart PiHole
-#  become: true
-#  systemd:
-#    state: restarted
-#    name: pihole.service
+- name: Restart PiHole
+  become: true
+  systemd:
+    state: restarted
+    name: pihole.service
 
