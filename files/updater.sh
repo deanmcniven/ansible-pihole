@@ -23,6 +23,6 @@ pushd /opt/pihole/img_build
 popd
 
 echo "Restarting service"
-#sudo systemctl restart pihole.service
+sudo systemctl restart pihole.service
 
 echo "Done"
