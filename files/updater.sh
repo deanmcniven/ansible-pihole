@@ -12,7 +12,7 @@ pushd /opt/pihole/img_build
     docker tag localhost:5000/panamax-pihole:latest localhost:5000/panamax-pihole:previous
 
     echo "Building new runtime"
-    docker build -t localhost:5000/panamax-pihole:new Dockerfile
+    docker build -t localhost:5000/panamax-pihole:new .
 
     echo "Updating latest tag"
     docker tag localhost:5000/panamax-pihole:new localhost:5000/panamax-pihole:latest
