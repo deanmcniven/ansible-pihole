@@ -14,3 +14,12 @@
   notify:
     - Restart PiHole
 
+- name: Add service updater script
+  become: true
+  copy:
+    src: 'files/updater.sh'
+    dest: '/opt/pihole/updater.sh'
+    owner: root
+    group: root
+    mode: '0755'
+
