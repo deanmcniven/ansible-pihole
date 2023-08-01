@@ -54,3 +54,21 @@
     group: root
     mode: '0644'
 
+- name: Copy Unbound config file
+  become: true
+  copy:
+    src: 'files/pi-hole.conf'
+    dest: '/opt/pihole/img_build/pi-hole.conf'
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Copy Unbound s6 init script
+  become: true
+  copy:
+    src: 'files/unbound-run'
+    dest: '/opt/pihole/img_build/unbound-run'
+    owner: root
+    group: root
+    mode: '0644'
+
